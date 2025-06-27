@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Raleway", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 300px;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    border-bottom: 1px solid #F68537;
+    height: 45px;
+    background-color: #EAD8A4;
+}
+
+.header h3 {
+    font-size: 17px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h3 img {
+    margin-right: 10px;
+}
+
+.container {
+    background-color: #EAD8A4;
+    max-width: 920px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.chat-container {
+    flex: 1;
+}
+
+#chat-log {
+    margin-bottom: 10px;
+    color: white;
+    border-radius: 5px;
+}
+
+.input-container {
+    background-color: #EAD8A4;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #F68537;
+    position: sticky;
+    bottom: 0;
+}
+
+#user-input {
+    background-color: transparent;
+    border: 2px solid #F68537;
+    color: black;
+    outline: none;
+    padding: 8px;
+    flex: 9;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 5px;
+}
+
+#user-input::placeholder {
+    color: black;
+    font-weight: 400;
+}
+
+#send-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F68537;
+    color: white;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+#send-button {
+    transition: all 0.3s ease;
+}
+
+#send-button:hover {
+    background-color: #F68537;
+}
+
+.bot,
+.user {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    color: black;
+    width: 100%;
+    padding: 15px 7px 15px 10px;
+    border-radius: 6px;
+    background-color: #F68537;
+    margin-bottom: 15px;
+}
+
+.user {
+    display: flex;
+    justify-content: end;
+    width: 80%;
+    margin-left: 14%;
+}
+
+.bot {
+    width: 80%;
+    background-color: #e0c880;
+}
+
+#chat-log #user-icon i {
+    padding: 10px 11px 2px;
+    font-size: 22px;
+    margin-top: 10px;
+    color: black;
+}
+
+#chat-log #bot-icon i {
+    padding: 10px 8px 0px;
+    font-size: 22px;
+    color: black;
+}
+
+#user-icon {
+    display: flex;
+    justify-content: end;
+    text-align: end;
+}
