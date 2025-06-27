@@ -40,7 +40,7 @@ function sendMessage() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-RapidAPI-Key': '99403a4dabmshc00d22e154f1020p11a116jsn56d752a7c9d6',
+            'X-RapidAPI-Key': '',
             'X-RapidAPI-Host': 'chatgpt-42.p.rapidapi.com'
         },
         body: `{"messages":[{"role":"user","content":"${message}"}]}`
@@ -91,3 +91,6 @@ function appendMessage(sender, message) {
     chatLog.appendChild(chatElement);
     chatLog.scrollTop = chatLog.scrollHeight;  // correct scroll
 }
+
+
+// create 
