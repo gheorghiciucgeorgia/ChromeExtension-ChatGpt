@@ -2,6 +2,18 @@ const chatLog = document.getElementById('chat-log');
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 const buttonIcon = document.getElementById('button-icon');
+const menuToggle = document.querySelector(".menu-toggle");
+const clearHistoryBtn = document.getElementById("clear-history");
+
+//function for opening the menu
+menuToggle.addEventListener('click', () => {
+    const icon = menuToggle.querySelector("i");
+    const menu = document.querySelector(".menu");
+
+    icon.classList.toggle("ri-menu-line");
+    icon.classList.toggle("ri-menu-fold-line");
+    menu.classList.toggle("open");
+});
 
 sendButton.addEventListener('click', sendMessage);
 
@@ -9,6 +21,13 @@ userInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         sendMessage();
     }
+});
+
+// Clear the history function
+clearHistoryBtn.addEventListener('click', () => {
+    chrome.storage.local.set({ conversation: [] }, function () {
+        chatLog.innerHTML = '';
+    });
 });
 
 function sendMessage() {
@@ -40,7 +59,7 @@ function sendMessage() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-RapidAPI-Key': '',
+            'X-RapidAPI-Key': 'PRIVATE KEY',
             'X-RapidAPI-Host': 'chatgpt-42.p.rapidapi.com'
         },
         body: `{"messages":[{"role":"user","content":"${message}"}]}`
@@ -60,7 +79,7 @@ function sendMessage() {
         });
 }
 
-function appendMessage(sender, message) {
+function appendMessage(sender, message, saveToStorage = true) {
     const messageElement = document.createElement('div');
     const iconElement = document.createElement('div');
     const chatElement = document.createElement('div');
@@ -70,12 +89,7 @@ function appendMessage(sender, message) {
     iconElement.classList.add("icon");
     messageElement.classList.add(sender);
 
-    if (sender === 'bot') {
-        // Render Markdown for bot messages
-        messageElement.innerHTML = marked.parse(message);
-    } else {
-        messageElement.innerText = message;
-    }
+    messageElement.innerText = message;
 
     if (sender === 'user') {
         icon.classList.add('fa-regular', 'fa-circle-user');
@@ -90,7 +104,28 @@ function appendMessage(sender, message) {
     chatElement.appendChild(messageElement);
     chatLog.appendChild(chatElement);
     chatLog.scrollTop = chatLog.scrollHeight;  // correct scroll
+
+
+    // Save message to chrome.storage.local
+    if (saveToStorage) {
+        // key and callback
+        chrome.storage.local.get({ conversation: [] }, function (result) {
+            //saving the result.key to a constant
+            const conversation = result.conversation;
+            //adding a new message to the array including the sender and the message
+            conversation.push({ sender, message });
+            // then saving into the storage
+            chrome.storage.local.set({ conversation });
+        });
+    }
 }
 
-
-// create 
+// When loading history, set saveToStorage to false
+// it retrives the message from the storage
+chrome.storage.local.get({ conversation: [] }, function (result) {
+    // the conversation is saved in the storage so for each the function appendMessage is called
+    // so that is shows the full conversation
+    result.conversation.forEach(msg => {
+        appendMessage(msg.sender, msg.message, false);
+    });
+});

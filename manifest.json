@@ -1,8 +1,11 @@
 {
     "manifest_version": 3,
-    "name": "GPT Sidekick",
+    "name": "GPT SideKick",
     "description": "Type less, think faster. This extension brings ChatGPT to every website—summarize, explain, translate, or generate content on the fly.",
     "version": "1.0",
+    "permissions": [
+    "storage"
+    ],
     "action": {
         "default_popup": "index.html"
     },

@@ -14,7 +14,6 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
     color: black;
     border-bottom: 1px solid #F68537;
     height: 45px;
@@ -27,10 +26,66 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 35px;
 }
 
 .header h3 img {
     margin-right: 10px;
+    width: 22%;
+}
+
+.header .menu-toggle {
+    margin-left: 5px;
+    background-color: transparent;
+    border: none;
+}
+
+.header .menu-toggle i {
+    font-size: 14pt;
+}
+
+.menu {
+    background-color: #f5f1e7;
+    position: absolute;
+    display: flex;
+    height: 91px;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    left: -48%;
+    transition: transform 0.4s ease-in-out;
+    will-change: transform;
+    box-shadow: rgba(246, 133, 55, 0.4) 5px 5px, rgba(246, 133, 55, 0.3) 10px 10px, rgba(246, 133, 55, 0.2) 15px 15px, rgba(246, 133, 55, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+}
+
+.menu button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu button:active {
+    color: rgb(174, 0, 0);
+}
+
+.menu button p {
+    font-size: 11pt;
+    text-decoration: underline;
+    font-weight: 600;
+    margin-left: 2px;
+
+}
+
+.menu button i {
+    text-decoration: none;
+}
+
+.open {
+    transform: translateX(118%);
 }
 
 .container {
@@ -41,12 +96,12 @@ body {
     flex-direction: column;
     justify-content: space-between;
     margin: 0 auto;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 .chat-container {
     flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #chat-log {
@@ -113,7 +168,6 @@ body {
     padding: 15px 7px 15px 10px;
     border-radius: 6px;
     background-color: #F68537;
-    margin-bottom: 15px;
 }
 
 .user {
